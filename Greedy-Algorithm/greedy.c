@@ -12,39 +12,35 @@
 /* define how many input array */
 #define N 4
 
-/* define how many change will get */ 
+/* define how many change will get (Goals) */ 
 #define G 32
 
 
 /* Greedy algorithm function */
 void greedy(int input[]){
-  int i,j,total=G, coin=0, find=0;
-    for(i=0;i<N;i++){
-      /* find rest of the coin */
-      if(total - input[i] >=0){
-        
-	/* Total rest of coin */
-       total = total - input[i];
- 
-       /* Increment solution coin */
-       coin++;
-      }
-      
-             
-      /* check rest of coin from current input item (solution) */
-      if(total%input[i] == 0){        
-        coin = coin + (total/input[i]);
-        find = 1;
-        printf("Solution = %d coin",coin);
-	return;
-      }
-      
-    }
-
-    /* if no solution found */
-    if(find==0){
-      printf("No Solution");
-    }
+  int i,j,sum=G,coin=0;
+   printf("[");
+   for(i=0;i<N;i++){
+      if(sum-input[i]>0){
+	     sum-=input[i];
+		 //Increment the sum of coin
+	     coin++;
+		 /* print the local solution */
+		 printf("%d,",input[i]);
+	  }
+	  if(sum%input[i]==0){
+	     
+		  /* how many coin left to same as goals */
+		 coin+=(sum/input[i]);
+		 
+		 /* print the rest of posibility global solution */
+		 for(j=0;j<(sum/input[i]);j++){
+		   printf("%d,",input[i]);
+		 }
+		 printf("] Solution = %d",coin);
+	  }
+      	
+	}
 }
 
 
