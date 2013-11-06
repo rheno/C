@@ -1,4 +1,8 @@
+/*  remove elements of array that duplicate  */
+
+/*      rhenobudiasa@yahoo.com               */
 #include<stdio.h>
+
 
 void delElement(int input[], int index, int length){
   int i;
