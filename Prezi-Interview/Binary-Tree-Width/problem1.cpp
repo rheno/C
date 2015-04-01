@@ -12,8 +12,6 @@ struct node{
   node* right;
 };
 
-int result=0;
-
 
 class BinTree{
 
@@ -23,7 +21,7 @@ class BinTree{
 
   void insert(node** b, int x);
   
-  void solution(node* b);
+  int solution(node* b);
 
 };
 
@@ -50,33 +48,31 @@ void BinTree::insert(node** b, int x){
 }
 }
 
-void BinTree::solution(node* b){
+int BinTree::solution(node* b){
   if(b==NULL){
-    return;
+    return 0;
   }
-  if(b!=NULL){ 
-
-    result++;
-
-    solution(b->left);
-    solution(b->right);
-  }
+   
+  return 1+solution(b->left)+solution(b->right);
 }
 
 
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
 
+    freopen("input000.txt","r",stdin);
+    freopen("output000.txt","w",stdout);
+
     BinTree* b = new BinTree;
     node* root = NULL;
-    int i=0;
+    int i=0, result = 0;
     char s[100];
 
     b->init(root);
 
 
     // There is no condition when the input stops
-    while(true){
+    while(i<9){
       scanf("%s",s);
       if(atoi(s)!=0){
         b->insert(&root, atoi(s));
@@ -84,7 +80,7 @@ int main() {
       i++;
     }
 
-    b->solution(root);
+    result = b->solution(root);
 
     cout<<result<<endl;
 
