@@ -32,7 +32,7 @@ typedef pair<int,int> pii;
 #define PB push_back
 #define MP make_pair
 #define ALL(c) (c).begin(), (c).end()
-#define IT(c,i) for(typeof((c).begin() i = (c).begin(); i != (c).end(); i++)
+#define IT(c,it) for(typeof((c).begin()) i = (c).begin(); i != (c).end(); i++)
 #define TR(i,a,b) for(int (i)=a;(i)<b;(i)++)
 #define PRESENT(c,x) ((c).find(x) != (c).end()) 
 #define CPRESENT(c,x) (find(ALL(c),x) != (c).end()) 
