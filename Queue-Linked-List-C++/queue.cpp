@@ -15,41 +15,41 @@ bool queue::isEmptyQueue(){
 int queue::top(){
   return q->top;
 }
- 
+
 node* queue::newQueue(int x){
   node* n = new node;
   n->top = x;
   n->next = NULL;
 
-  return n; 
+  return n;
 }
 
 void queue::insert(int x){
-  
-  node* n = newQueue(x); 
- 
+
+  node* n = newQueue(x);
+
   if(isEmptyQueue()){
-     q = n;	
+     q = n;
   }else{
-     
-     while(q->next != NULL){
-	q = q->next;
-     }     
-     
-     q->next = n;
+     node* p = q;
+     while(p->next != NULL){
+	p = p->next;
+     }
+
+     p->next = n;
   }
 
 }
- 
+
 
 void queue::remove(){
-   
+
    if(isEmptyQueue()){
       cout<<"Queue Empty"<<endl;
    }else{
       node* del = q;
       q = q->next;
-      delete del;      
+      delete del;
    }
 }
 
@@ -64,4 +64,3 @@ void queue::printQueue(){
         }
    }
 }
-
