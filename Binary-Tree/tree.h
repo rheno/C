@@ -9,10 +9,18 @@ struct BinTree{
   struct BinTree* right;
 };
 
-void initBinTree(struct BinTree** b);
+struct BinTree* new(int x);
 
-void add(int x, struct BinTree** root);
+struct BinTree* insert(int x, struct BinTree* root);
 
-void search(int x,struct BinTree* root);
+struct BinTree* delete(int x, struct BinTree* root);
+
+struct BinTree* getLeft(struct BinTree* root);
+
+struct BinTree* getRight(struct BinTree* root);
+
+struct BinTree* reverse(struct BinTree* root);
+
+void printTree(struct BinTree* root);
 
 #endif
