@@ -3,7 +3,9 @@
 using namespace std;
 
 string decimal_to_bit(int N){
+
   string s;
+
   while(N > 0){
      
      if(N%2 == 0){

@@ -15,6 +15,7 @@ bool is_power_of(int n, int k){
   }
  
   return false;
+
 }
 
 int main(){

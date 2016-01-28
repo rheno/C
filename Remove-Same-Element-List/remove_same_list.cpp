@@ -32,6 +32,7 @@ node* insert(node* head, int x){
 
 /* if sorted */
 node* removesame1(node* head){
+
    if(head == NULL){
 	return NULL;	
    }else if(head->next != NULL){
@@ -91,8 +92,6 @@ int main(){
   n = l.insert(n,4);
   n = l.insert(n,3);
   n = l.insert(n,1);
-  //n = l.removesame1(n);
-  //l.print_list(n); 
   l.removesame2(n);
   l.print_list(n);
   return 0;
