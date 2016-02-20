@@ -1,24 +1,29 @@
 #include "queue.h"
 
 queue::queue(){
-  q = NULL;
+  front = rear = NULL;
 }
 
 queue::~queue(){
-  delete q;
 }
 
 bool queue::isEmptyQueue(){
-  return q == NULL ? true : false;
+  return front == NULL && rear == NULL ? true : false;
 }
 
-int queue::top(){
-  return q->top;
+node* queue::get_front(){
+  return front;
 }
+
+node* queue::get_rear(){
+  return rear;
+}
+
+
 
 node* queue::newQueue(int x){
   node* n = new node;
-  n->top = x;
+  n->data = x;
   n->next = NULL;
 
   return n;
@@ -29,14 +34,12 @@ void queue::insert(int x){
   node* n = newQueue(x);
 
   if(isEmptyQueue()){
-     q = n;
+     front = rear = n;
   }else{
-     node* p = q;
-     while(p->next != NULL){
-	p = p->next;
-     }
-
-     p->next = n;
+    
+    rear->next = n;
+    rear = n;
+   
   }
 
 }
@@ -46,20 +49,23 @@ void queue::remove(){
 
    if(isEmptyQueue()){
       cout<<"Queue Empty"<<endl;
+   }else if(front == rear){
+	front = rear = NULL;
    }else{
-      node* del = q;
-      q = q->next;
+      node* del = front;
+      front = front->next;
       delete del;
    }
 }
+
 
 void queue::printQueue(){
    if(isEmptyQueue()){
 	cout<<"Queue Empty"<<endl;
    }else{
-        node* p = q;
+        node* p = rear;
         while(p != NULL){
-	   cout<<p->top<<endl;
+	   cout<<p->data<<endl;
 	   p = p->next;
         }
    }

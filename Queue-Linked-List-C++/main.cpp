@@ -6,10 +6,10 @@ int main(){
   queue* q = new queue;
   q->insert(1); // q = {1}
   q->insert(2); // q = {1,2}
-  q->remove();
+  q->remove(); // q = {2}
 
-  cout<<"top = "<<q->top()<<endl; // top = 1
-  
+  q->printQueue();
+
   delete q;
 
   return 0;

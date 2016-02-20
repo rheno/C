@@ -7,7 +7,7 @@ using namespace std;
 
 struct node{
   
-   int top;
+   int data;
    node* next;   
 
 };
@@ -23,7 +23,9 @@ public :
 
    bool isEmptyQueue();
   
-   int top();
+   node* get_front();
+   
+   node* get_rear();
 
    node* newQueue(int x);
 
@@ -35,7 +37,9 @@ public :
 
 private :
 
-   node* q;
+   node* front;
+   
+   node* rear;
 
 };
 
