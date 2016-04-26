@@ -1,3 +1,5 @@
+/* Dynamic Programming */
+/* Knapsack Solution */
 #include<stdio.h>
 
 #define N 5
