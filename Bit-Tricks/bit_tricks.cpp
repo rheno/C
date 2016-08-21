@@ -44,6 +44,21 @@ int main(){
   
   cout<<check_power2(16)<<endl;
 
+  int x = 8;
+  /* check bit is set  */
+  if (x & (1<<3)){
+        cout<<"is set"<<endl;
+  }
+
+  /* set bit from right */
+  cout<< (x |= (1<<0))<<endl; //9
+
+  /* unset bit from right */
+  cout<< (x &= ~(1<<0)) <<endl; //8
+
+  /* flip bit form right */
+  cout<< (x ^= (1<<3)) <<endl; //0
+
   
   return 0;
 }
