@@ -1,98 +1,173 @@
-#include<iostream>
+#include <iostream>
+#include <climits>
 
 using namespace std;
 
+const int MAX_HEAP_SIZE = INT_MAX;
 
-struct node{
-  int top;
-  node* next;
+/* Heap Data Structure */
+class Heap
+{
+
+public :
+	Heap()
+	{
+		array = new int[MAX_HEAP_SIZE];				
+		size = 0;
+	}
+
+	~Heap()
+	{
+		delete array;
+	}
+
+	int getLeft(int index)
+	{
+		return (2 * index) + 1;
+	}
+
+	int getRight(int index)
+	{
+		return (2 * index) + 2;
+	}
+
+	int parent(int index)
+	{
+		return (index - 1) / 2;
+	}
+
+	void heapify(int index)
+	{
+		
+		int left = getLeft(index);
+		int right = getRight(index);
+		int smallest = index;
+
+		if(left < size && array[left] <= array[index])
+		{
+			smallest = left;
+		}
+
+		if(right < size && array[right] <= array[smallest])
+		{
+			smallest = right;
+		}
+
+		if(smallest != index)
+		{
+			swap(array[index], array[smallest]);
+			heapify(smallest);
+		}
+		
+	}
+
+	
+	void push(int value)
+	{
+		if(size == MAX_HEAP_SIZE)
+		{
+			cout << "Maximum Heap Size" << endl;
+			return;
+		}
+
+		array[size] = value;
+		int index = size;
+		size++;
+		
+
+		while(index != 0 && array[index] <= array[parent(index)])
+		{
+			swap(array[index], array[parent(index)]);
+			index = parent(index);
+		}
+	}
+
+	int pop()
+	{
+		if(size <= 0)
+		{
+			return MAX_HEAP_SIZE;
+		}
+
+		if(size == 1)
+		{
+			size--;
+			return array[0];
+		}
+
+		int root = array[0];
+		array[0] = array[size - 1];
+		size--;
+		heapify(0);
+
+		return root;
+
+	}
+
+	
+
+private :
+
+	int* array;
+	int size;
+
 };
 
-class priority_queue{
+
+class PriorityQueue
+{
 
 public :
 
-   priority_queue(){
- 	q = NULL;
+   PriorityQueue()
+   {
+	/* Contructor */
+	heap = new Heap;
    }
    
-   ~priority_queue(){
-	delete q;
+   ~PriorityQueue()
+   {
+	/* Destructor */
+	delete heap;
    }
 
-   node* newNode(int x){
-	
-     node* n = new node;
-     n->top = x;
-     n->next = NULL;
-   
-     return n;
-   }
-  
-   void push(int x){
-     
-     if(q == NULL){
-	q = newNode(x);
-     }else if(q->top > x){
-	node* n = newNode(x);
-        n->next = q;
-	q = n;
-     }else{
-	
-	node* p = q;
-  	while(p->next != NULL){
-	   if(p->top > x){
-	      break;	
-	   }	
-	   p = p->next;
-	}
-	if(p != NULL){
-        	p->next = newNode(x); 
-        }else{
-		p = newNode(x);
-	}
-     }
+   void push(int value)
+   {
+	heap->push(value);
+   }      
 
-	
+   int pop()
+   {
+	return heap->pop();
    }
-      
-   void pop(){
-	
-	if(q == NULL){
-	   cout<<"Queue is empty"<<endl;
-	}else{
-	   node* del = q;
-           q = q->next;
-	   delete del;
-	}
-   }
- 
-   int top(){
-	return q->top;
-   }
+
 
 private :
    
-   node* q;
+   Heap *heap;
    
 
 };
 
-int main(){
+int main()
+{
 
-  priority_queue* q = new priority_queue;
+  PriorityQueue* pq = new PriorityQueue;
   
+  pq->push(7);
+  pq->push(3);
+  pq->push(10);
+  pq->push(1);
 
-  q->push(3);
-
-  q->push(2);
- 
-  q->push(1);
-
-  
- cout<<q->top()<<endl;
-
-  delete q;
    
+
+  cout << pq->pop() << endl;
+  cout << pq->pop() << endl;
+  cout << pq->pop() << endl;
+  cout << pq->pop() << endl;
+
+
+  delete pq;   
+
   return 0;
 }
