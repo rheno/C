@@ -1,21 +1,19 @@
-#include "list.h"
-#include <iostream>
+#include "linkedlist.h"
 
-using namespace std;
+int main()
+{
+        LinkedList<string> head;
+        head.insertLast("One");
+        head.insertLast("Two");
+        head.insertAfter(head.getHead()->next, "Three");
+        head.insertAfter(head.getHead()->next->next, "Four");
+        head.insertFirst("Zero");
 
-int main(){
-	
-	List* l = new List;
+        head.deleteFirst();
+        head.deleteAfter(head.getHead()->next->next->next->next);
+        head.deleteLast();
 
-	l->init();
-	l->insertFirst(12);
-	l->insertFirst(11);
-	l->insertLast(13);
-	l->insertAfter(l->search(13), 14);
-	l->insertLast(15);
-	l->deleteFirst();
-	l->deleteLast();
-	l->deleteAfter(l->search(12));
-	l->printList();
-	return 0;
+        head.printList();
+
+        return 0;
 }
