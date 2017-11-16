@@ -1,16 +1,18 @@
-#include "queue.h"
+#include "queue.hpp"
 
-int main(){
+int main()
+{
 
-  /* implment queue */
-  queue* q = new queue;
-  q->insert(1); // q = {1}
-  q->insert(2); // q = {1,2}
-  q->remove(); // q = {2}
+	Queue<int> q;
 
-  q->printQueue();
+	q.push(1);
+	q.push(2);
+	q.push(3);
 
-  delete q;
-
-  return 0;
+	while(!q.empty())
+	{
+		cout << q.pop() << endl;
+	}
+	
+	return 0;
 }
