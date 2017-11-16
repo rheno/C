@@ -1,15 +1,17 @@
-#include "stack.h"
+#include "stack.hpp"
 
-int main(){
+int main()
+{
+	Stack<int> s;
+	
+	s.push(3);
+	s.push(2);
+	s.push(1);
 
-  /* implement stack */
-  stack* s = new stack;
-
-  s->push(1); // s = {1}
-  s->push(2); // s = {2,1}
-  cout<<"top = "<<s->top()<<endl;  // top = 2
-
-  delete s;
-
-  return 0;
+	while(!s.empty())
+	{
+		cout << s.pop() << endl;
+	}
+	
+	return 0;
 }
